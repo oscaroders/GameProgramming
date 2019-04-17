@@ -39,12 +39,12 @@ public class EnemyController : MoveMaster, IParasiteAttack {
             GatheredParasites[0].transform.position = shootPoint.position;
             GatheredParasites[0].GetComponent<Rigidbody>().AddForce(v3);
             GatheredParasites[0].speed = -5f;
-            GatheredParasites[0].direction= -1f;
+            GatheredParasites[0].direction = -1f;
             shootParasites.Add(GatheredParasites[0]);
             GatheredParasites.Remove(GatheredParasites[0]);
         }
     }
-    
+
     void Start() {
         attackingParasites = new List<ParasiteController>();
         GatheredParasites = new List<ParasiteController>();
@@ -68,8 +68,9 @@ public class EnemyController : MoveMaster, IParasiteAttack {
             }
         } else {
 
-           //Debug.Log("EnemyDead");
+            Debug.Log("EnemyDead");
             Destroy(this);
+            this.gameObject.SetActive(false);
         }
 
         foreach (ParasiteController pc in shootParasites) {

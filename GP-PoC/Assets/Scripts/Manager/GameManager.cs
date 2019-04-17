@@ -28,11 +28,11 @@ public class GameManager : MonoBehaviour {
         if(Input.GetAxisRaw("Horizontal") != 0) {
             float dir = Input.GetAxisRaw("Horizontal");
             playerController.MoveRound(dir);
-            Debug.Log(playerController.transform.localRotation.eulerAngles);
+            //Debug.Log(playerController.transform.localRotation.eulerAngles);
         }
 
-        if (Input.GetAxisRaw("Vertical") != 0)
-            playerController.MoveIn(Input.GetAxisRaw("Vertical"));
+        //if (Input.GetAxisRaw("Vertical") != 0)
+        //    playerController.MoveIn(Input.GetAxisRaw("Vertical"));
 
         if (Input.GetButtonDown("Jump"))
             playerController.Jump();

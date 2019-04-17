@@ -65,7 +65,9 @@ public class PlayerController : MoveMaster, IParasiteAttack
                // Debug.Log("Health : " + health);
             }
         } else {
-           // Debug.Log("PlayerDead");
+           Debug.Log("PlayerDead");
+            Destroy(this);
+            this.gameObject.SetActive(false);
         }
         frameCount++;
     }
