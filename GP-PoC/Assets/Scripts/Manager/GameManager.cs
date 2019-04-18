@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour {
     public static GameManager instance;
 
     private void Awake() {
-        if(instance == null) {
+        if ( instance == null ) {
             instance = this;
         } else {
-            Destroy(this);
+            Destroy( this );
         }
     }
     #endregion
@@ -25,21 +25,21 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Update() {
-        if(Input.GetAxisRaw("Horizontal") != 0) {
-            float dir = Input.GetAxisRaw("Horizontal");
-            playerController.MoveRound(dir);
+        if ( Input.GetAxisRaw( "Horizontal" ) != 0 ) {
+            float dir = Input.GetAxisRaw( "Horizontal" );
+            playerController.MoveRound( dir );
             //Debug.Log(playerController.transform.localRotation.eulerAngles);
         }
 
         //if (Input.GetAxisRaw("Vertical") != 0)
         //    playerController.MoveIn(Input.GetAxisRaw("Vertical"));
 
-        if (Input.GetButtonDown("Jump"))
+        if ( Input.GetButtonDown( "Jump" ) )
             playerController.Jump();
 
-        if (Input.GetButtonDown("Fire1")) 
+        if ( Input.GetButtonDown( "Fire1" ) )
             playerController.Fire();
-        
+
     }
     #endregion
 
@@ -51,10 +51,10 @@ public class GameManager : MonoBehaviour {
 
     public GameState currentGameState;
 
-    public void ChangeGameState(GameState gameState) {
+    public void ChangeGameState( GameState gameState ) {
         currentGameState = gameState;
 
-        switch (currentGameState) {
+        switch ( currentGameState ) {
             case GameState.MainMenu:
                 //Do stuff... Run Main Menu
                 break;
