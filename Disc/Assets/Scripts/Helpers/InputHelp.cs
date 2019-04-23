@@ -51,7 +51,56 @@ namespace Hermit {
             }
             #endregion
 
-            #region Numpad
+            #region Numbers
+            public void Zero( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha0 ) || Input.GetKeyDown( KeyCode.Keypad0 ) )
+                    action();
+            }
+
+            public void One( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha1 ) || Input.GetKeyDown( KeyCode.Keypad1 ) )
+                    action();
+            }
+
+            public void Two( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha2 ) || Input.GetKeyDown( KeyCode.Keypad2 ) )
+                    action();
+            }
+
+            public void Three( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha3 ) || Input.GetKeyDown( KeyCode.Keypad3 ) )
+                    action();
+            }
+
+            public void Four( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha4 ) || Input.GetKeyDown( KeyCode.Keypad4 ) )
+                    action();
+            }
+
+            public void Five( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha5 ) || Input.GetKeyDown( KeyCode.Keypad5 ) )
+                    action();
+            }
+
+            public void Six( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha6 ) || Input.GetKeyDown( KeyCode.Keypad6 ) )
+                    action();
+            }
+
+            public void Seven( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha7 ) || Input.GetKeyDown( KeyCode.Keypad7 ) )
+                    action();
+            }
+
+            public void Eight( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha8 ) || Input.GetKeyDown( KeyCode.Keypad8 ) )
+                    action();
+            }
+
+            public void Nine( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.Alpha9 ) || Input.GetKeyDown( KeyCode.Keypad9 ) )
+                    action();
+            }
             #endregion
 
             #region Mouse

@@ -22,6 +22,5 @@ public class Player : CharacterController {
 
     void Update() {
         gameInput.InputCheck();
-        DrainHealth();
     }
 }

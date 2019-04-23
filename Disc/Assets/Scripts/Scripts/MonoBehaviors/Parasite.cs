@@ -28,6 +28,6 @@ public class Parasite : MonoBehaviour {
     //Maby we should use movement? look if component system works?
     private void Roll( Vector3 direction ) {
         rigidBody.AddTorque( new Vector3( -direction.z , 0 , direction.x ) * speed * Time.deltaTime );
-        rigidBody.AddForce(-direction * 10);
+        rigidBody.AddForce(-direction * 4);
     }
 }
