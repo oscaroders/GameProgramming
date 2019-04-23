@@ -8,17 +8,25 @@ public class CharacterController : MonoBehaviour, IMovable {
 
     protected Rigidbody rigidBody;
     protected Animator animator;
+    private Character character;
 
     [SerializeField]
     protected float speed;
+
     [SerializeField]
     private float jumpForce;
+
     [SerializeField]
     protected float magnitude;
+
     protected float sqrMagnitude;
     protected float differ = 0.5f;
 
     private float jumpCounter;
+
+    private void Awake() {
+        character = new Character( 100 );
+    }
 
     void Start() {
         //magnitude = transform.position.magnitude;
@@ -65,7 +73,7 @@ public class CharacterController : MonoBehaviour, IMovable {
         }
         return false;
     }
-    
+
     //How to reset jumpcounter so you can´t jump forever.
     private bool JumpCounter( float distance = 0 ) {
         float maxNumberOfJumps = 3;
@@ -101,5 +109,27 @@ public class CharacterController : MonoBehaviour, IMovable {
         Vector3 position = transform.position;
         position.Normalize();
         transform.position = position * magnitude;
+    }
+
+    protected void DrainHealth() {
+        character.Health -= 5; //character.NumberOfAttackingParasites
+        //try to fade out color...
+
+        if ( character.Health <= 0 ) {
+            Invoke("Die", 2);
+        }
+    }
+
+    private void Die() {
+        DebugLogging.CustomDebug( "died");
+        Destroy( this );
+    }
+
+    protected void GatherParasites() {
+
+    }
+
+    protected void Fire() {
+
     }
 }

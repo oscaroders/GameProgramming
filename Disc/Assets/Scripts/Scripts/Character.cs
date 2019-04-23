@@ -8,26 +8,34 @@ using UnityEngine;
 /// </summary>
 public class Character {
 
-    private int health;
-    private int numberOfGatheredParasites;
+    public int Health {
+        get;
+        set;
+    }
+    public int NumberOfGatheredParasites {
+        get;
+        set;
+    }
+    public int NumberOfAttackingParasites {
+        get;
+        set;
+    }
 
     /// <summary>
     /// Character constructor
     /// </summary>
     /// <param name="health">Health of character</param>
     public Character( int health ) {
-        this.health = health;
+        Health = health;
     }
+
+
 
     public void Fire() {
 
     }
 
     public void GatherParasites() {
-
-    }
-
-    public void Die() {
 
     }
 }

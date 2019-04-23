@@ -14,14 +14,6 @@ public class GameManager : MonoBehaviour {
     /// Singleton pattern to ensure only one instance and to get a global point of access.
     /// </summary>
     public static GameManager instance;
-
-    private void Awake() {
-        if ( instance == null ) {
-            instance = this;
-        } else {
-            Destroy( this );
-        }
-    }
     #endregion
 
     #region GameState
@@ -57,25 +49,20 @@ public class GameManager : MonoBehaviour {
                 break;
         }
     }
-
-    public InputHandler GameInput { get;
-        private set;
-    }
     #endregion
 
-    //#region Player Setup
-    //public Enemy player;
-    //public GameObject playerPrefab;
-    //#endregion
+    public InputHandler GameInput {
+        get;
+        private set;
+    }
 
-    //#region Enemy Setup
-    //public Enemy enemyController; //make an AI enemy controller
-    //public GameObject enemyPrefab;
-    //#endregion
+    private void Awake() {
 
-    private void Start() {
-        //playerPrefab = GameObject.FindGameObjectWithTag( "Player" );
-        //player = new Enemy(100, playerPrefab );
+        if ( instance == null ) {
+            instance = this;
+        } else {
+            Destroy( this );
+        }
 
         GameInput = new InputHandler();
     }
