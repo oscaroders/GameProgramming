@@ -14,6 +14,15 @@ public class GameManager : MonoBehaviour {
     /// Singleton pattern to ensure only one instance and to get a global point of access.
     /// </summary>
     public static GameManager instance;
+
+    private void Awake() {
+
+        if ( instance == null ) {
+            instance = this;
+        } else {
+            Destroy( this );
+        }
+    }
     #endregion
 
     #region GameState
@@ -51,21 +60,20 @@ public class GameManager : MonoBehaviour {
     }
     #endregion
 
+    public float WorldMagnitude {
+        get;
+        private set;
+    } = 20f;
+
     public InputHandler GameInput {
         get;
         private set;
-    }
+    } = new InputHandler();
 
-    private void Awake() {
-
-        if ( instance == null ) {
-            instance = this;
-        } else {
-            Destroy( this );
-        }
-
-        GameInput = new InputHandler();
-    }
+    //public IMediator Mediator {
+    //    get;
+    //    private set;
+    //} = new Mediator();
 
     private void Update() {
         GameInput.InputCheck();

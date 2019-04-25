@@ -4,7 +4,7 @@ using Hermit.DebugHelp;
 using UnityEngine;
 
 /// <summary>
-/// Interface for Actors that moves; Character and Parasites
+/// Interface for characters that moves
 /// </summary>
 public interface IMovable {
 
@@ -16,11 +16,4 @@ public interface IMovable {
     /// /// <param name="magnitude">How much the position should move</param>
     /// <returns>Returns a new position as Vector3</returns>
     void Move( float direction );
-
-    /// <summary>
-    /// Used to calcualte Jump
-    /// </summary>
-    /// <param name="position">Original position</param>
-    /// <returns>Returns a new position as Vector3</returns>
-    void Jump();
 }
