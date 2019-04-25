@@ -10,15 +10,14 @@ public class RotationComponent : IComponent {
     private Transform transform;
     private float timeCount;
 
-    public void Send( int index ) {
-        mediator.MessageIndex( index , this );
+    public void Send( int index, int value ) {
+        mediator.MessageIndex( index , value,  this );
     }
 
-    public void Recive( int index ) {
+    public void Recive( int index, int value ) {
         switch ( index ) {
             case 1:
                 //Do stuff
-                DebugLogging.CustomDebug("hej"); //<- kallas två gånger. 
                 break;
             case 2:
                 //Do stuff
@@ -56,7 +55,7 @@ public class RotationComponent : IComponent {
         timeCount = timeCount + Time.deltaTime;
     }
 
-
+    // Bugs out somtimes? see what causes strange behavior.
     public void RotateTowards( Transform target ) {
         Vector3 targetUnitVector = target.position.normalized;
         float targetUnitAngle = Mathf.Asin( targetUnitVector.z );

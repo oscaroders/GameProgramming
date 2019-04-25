@@ -4,6 +4,6 @@ using Hermit.DebugHelp;
 using UnityEngine;
 
 public interface IComponent {
-    void Send( int index );
-    void Recive( int index );
+    void Send( int index, int value );
+    void Recive( int index, int value );
 }

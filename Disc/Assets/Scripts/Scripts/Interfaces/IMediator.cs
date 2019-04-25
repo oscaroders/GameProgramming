@@ -5,5 +5,5 @@ using UnityEngine;
 
 public interface IMediator {
     void AddComponent(IComponent component);
-    void MessageIndex(int index, IComponent component);
+    void MessageIndex(int index, int value, IComponent component);
 }

@@ -6,14 +6,15 @@ using UnityEngine;
 public class Parasite : MonoBehaviour {
     private Rigidbody rigidBody;
 
-    [SerializeField]
     private Transform target;
+
     [SerializeField]
     private float speed;
 
     // Start is called before the first frame update
     void Start() {
         rigidBody = GetComponent<Rigidbody>();
+        target = FindObjectOfType<PlayerController>().transform;
     }
 
     // Update is called once per frame

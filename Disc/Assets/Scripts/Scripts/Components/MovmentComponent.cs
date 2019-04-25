@@ -29,12 +29,12 @@ public class MovmentComponent : IComponent, IMovable {
         this.mediator.AddComponent( this );
     }
 
-    public void Send( int index ) {
-        mediator.MessageIndex( index , this );
+    public void Send( int index, int value ) {
+        mediator.MessageIndex( index , value,  this );
     }
 
 
-    public void Recive( int index ) {
+    public void Recive( int index, int value ) {
         switch ( index ) {
             case 1:
                 //Do stuff

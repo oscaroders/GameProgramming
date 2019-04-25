@@ -29,12 +29,12 @@ public class JumpComponent : IComponent {
     }
 
 
-    public void Send( int index ) {
-        mediator.MessageIndex( index , this );
+    public void Send( int index, int value ) {
+        mediator.MessageIndex( index , value, this );
     }
 
 
-    public void Recive( int index ) {
+    public void Recive( int index, int value ) {
         switch ( index ) {
             case 1:
                 //Do stuff
@@ -48,7 +48,7 @@ public class JumpComponent : IComponent {
     }
 
     public void Jump() {
-        Send(1);
+        Send(1 , 0);
         Vector3 jumpForce = Vector3.up * this.jumpForce;
 
         DebugLogging.CustomDebug( "" + AllowedToJump() );

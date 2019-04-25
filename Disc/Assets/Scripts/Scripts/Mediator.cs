@@ -15,10 +15,10 @@ public class Mediator : IMediator {
         components.Add(component);
     }
 
-    public void MessageIndex( int index , IComponent sendingComponent ) {
+    public void MessageIndex( int index , int value,  IComponent sendingComponent ) {
         foreach ( IComponent component in components ) {
             if ( component != sendingComponent ) {
-                component.Recive(index);
+                component.Recive(index, value);
             }
         }
     }
