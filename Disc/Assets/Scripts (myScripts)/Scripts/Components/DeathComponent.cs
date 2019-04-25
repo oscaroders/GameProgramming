@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using Hermit.DebugHelp;
 using UnityEngine;
 
-public class CollectComponent : IComponent {
+public class DeathComponent : IComponent {
 
     private IMediator mediator;
-    private int numberOfCollectedParasites;
 
-    public CollectComponent( IMediator mediator ) {
+    public DeathComponent( IMediator mediator ) {
         this.mediator = mediator;
         this.mediator.AddComponent( this );
     }
@@ -19,21 +18,16 @@ public class CollectComponent : IComponent {
 
     public void Recive( int index , int value ) {
         switch ( index ) {
-            case 1:
-                //Do stuff
+            case 0:
+                if(value <= 0)
+                    Die();
                 break;
             default:
                 break;
         }
     }
 
-    private void Collect( int collected ) {
-        numberOfCollectedParasites += collected;
-        Send( 2 , numberOfCollectedParasites );
-    }
-
-    private void Disperse( int despersed ) {
-        numberOfCollectedParasites -= despersed;
-        Send( 2 , numberOfCollectedParasites );
+    private void Die() {
+        DebugLogging.CustomDebug("someone Died!" , size: 20, color: "red");
     }
 }

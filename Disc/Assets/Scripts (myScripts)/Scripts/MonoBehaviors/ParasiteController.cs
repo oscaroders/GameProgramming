@@ -3,23 +3,26 @@ using System.Collections.Generic;
 using Hermit.DebugHelp;
 using UnityEngine;
 
-public class Parasite : MonoBehaviour {
+public class ParasiteController : MonoBehaviour {
     private Rigidbody rigidBody;
 
-    private Transform target;
-
+    public Transform Target {
+        get;
+        set;
+    }
+    
     [SerializeField]
     private float speed;
 
     // Start is called before the first frame update
     void Start() {
         rigidBody = GetComponent<Rigidbody>();
-        target = FindObjectOfType<PlayerController>().transform;
+        Target = FindObjectOfType<PlayerController>().transform;
     }
 
     // Update is called once per frame
-    void Update() {
-        Vector3 direction =  transform.position - target.position;
+    public void thisUpdate() {
+        Vector3 direction =  transform.position - Target.position;
         direction.Normalize();
 
         Roll( direction );

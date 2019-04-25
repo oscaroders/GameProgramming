@@ -70,11 +70,6 @@ public class GameManager : MonoBehaviour {
         private set;
     } = new InputHandler();
 
-    //public IMediator Mediator {
-    //    get;
-    //    private set;
-    //} = new Mediator();
-
     private void Update() {
         GameInput.InputCheck();
     }

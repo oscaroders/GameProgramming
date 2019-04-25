@@ -6,9 +6,12 @@ using UnityEngine;
 public class FireComponent : IComponent {
 
     private IMediator mediator;
+    private Transform transform;
     private int numberOfCollectedParasites;
 
-    public FireComponent( IMediator mediator ) {
+    public FireComponent(GameObject gameObject, IMediator mediator ) {
+        transform = gameObject.transform;
+
         this.mediator = mediator;
         this.mediator.AddComponent( this );
     }
@@ -19,15 +22,16 @@ public class FireComponent : IComponent {
 
     public void Recive( int index , int value ) {
         switch ( index ) {
-            case 0:
-                //Do stuff
+            case 2:
+                numberOfCollectedParasites = value;
                 break;
+
             default:
                 break;
         }
     }
 
-    private void Fire() {
+    public void Fire() {
         if ( numberOfCollectedParasites != 0 ) {
 
             Send( 3 , 1 );

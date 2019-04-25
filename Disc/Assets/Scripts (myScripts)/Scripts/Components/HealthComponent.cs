@@ -26,8 +26,8 @@ public class HealthComponent : IComponent {
 
     public void Recive( int index , int value ) {
         switch ( index ) {
-            case 1:
-                //Do stuff
+            case 7:
+                numberOfAttackingParasites += value;
                 break;
             case 2:
                 //Do stuff
@@ -37,9 +37,12 @@ public class HealthComponent : IComponent {
         }
     }
 
-    private void DrainHealth() {
+    public void DrainHealth() {
 
         if ( timeCount > drainFreqency ) {
+            health -= numberOfAttackingParasites;
+            DebugLogging.CustomDebug( "numberof parasites: " + numberOfAttackingParasites );
+            DebugLogging.CustomDebug("health: " + health);
             Send( 0 , health );
             timeCount = 0;
         }
