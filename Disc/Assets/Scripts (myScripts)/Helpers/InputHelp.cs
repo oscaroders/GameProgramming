@@ -49,6 +49,11 @@ namespace Hermit {
                 if ( Input.GetKeyDown( KeyCode.E ) )
                     action();
             }
+
+            public void R( InputDelegate_Button action ) {
+                if ( Input.GetKeyDown( KeyCode.R ) )
+                    action();
+            }
             #endregion
 
             #region Numbers

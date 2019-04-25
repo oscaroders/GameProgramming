@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour {
                 break;
         }
     }
-    #endregion
+    #endregion 
 
     public float WorldMagnitude {
         get;
@@ -70,11 +70,24 @@ public class GameManager : MonoBehaviour {
         private set;
     } = new InputHandler();
 
+    private void Start() {
+        GameInput.Quit = Quit;
+        GameInput.Restart = Restart;
+    }
+
     private void Update() {
         GameInput.InputCheck();
     }
 
     public void StartCoroutineRemote( IEnumerator CorutineToStart ) {
         StartCoroutine( CorutineToStart );
+    }
+
+    private void Quit() {
+        SceneManager.LoadScene( "MenuScene" );
+    }
+
+    private void Restart() {
+        SceneManager.LoadScene( "GameScene" );
     }
 }

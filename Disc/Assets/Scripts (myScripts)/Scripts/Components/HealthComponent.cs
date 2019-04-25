@@ -44,6 +44,7 @@ public class HealthComponent : IComponent {
             DebugLogging.CustomDebug( "numberof parasites: " + numberOfAttackingParasites );
             DebugLogging.CustomDebug("health: " + health);
             Send( 0 , health );
+            Send(10, health);
             timeCount = 0;
         }
 

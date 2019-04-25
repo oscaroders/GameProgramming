@@ -7,14 +7,14 @@ public class ParasiteManager : MonoBehaviour {
 
     int sizeOfParasitePool = 30;
     List<GameObject> parasitePool = new List<GameObject>();
-    GameObject parasitePrefab;
+    public GameObject parasitePrefab;
     ParasiteController[] parasiteControllers;
     Transform[] parasiteSpawnPoints; // TO DO when time...
 
 
     private void Start() {
         parasiteControllers = new ParasiteController[sizeOfParasitePool];
-        parasitePrefab = FindObjectOfType<ParasiteController>().gameObject;
+        //parasitePrefab = FindObjectOfType<ParasiteController>().gameObject;
         for ( int i = 0 ; i < sizeOfParasitePool ; i++ ) {
             GameObject temp = Instantiate( parasitePrefab , Vector3.up * 3 , Quaternion.identity );
             temp.SetActive(true);

@@ -29,5 +29,6 @@ public class DeathComponent : IComponent {
 
     private void Die() {
         DebugLogging.CustomDebug("someone Died!" , size: 20, color: "red");
+        Send(11, 0);
     }
 }
