@@ -9,8 +9,8 @@ public class FollowingCamera : MonoBehaviour {
     Vector3 velocity = Vector3.zero;
 
     private void LateUpdate() {
-        Vector3 offsetDirection = ( followTrans.position - Vector3.zero ) * 1.5f;
-        offsetDirection = new Vector3(offsetDirection.x,  3, offsetDirection.z);
+        Vector3 offsetDirection = ( followTrans.position - Vector3.zero ) * 2f;
+        offsetDirection = new Vector3(offsetDirection.x,  10, offsetDirection.z);
         transform.position = Vector3.SmoothDamp( transform.position , offsetDirection , ref velocity , 0.04f );
         transform.rotation = Quaternion.LookRotation( -offsetDirection , Vector3.up );
     }
