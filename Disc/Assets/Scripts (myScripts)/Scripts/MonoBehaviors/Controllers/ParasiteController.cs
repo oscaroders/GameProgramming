@@ -2,36 +2,20 @@
 using System.Collections.Generic;
 using Hermit.DebugHelp;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ParasiteController : MonoBehaviour {
-    private Rigidbody rigidBody;
 
-    public Transform Target {
-        get;
-        set;
-    }
-    
-    [SerializeField]
-    private float speed;
+    private NavMeshAgent navMeshAgent;
 
     // Start is called before the first frame update
     void Start() {
-        rigidBody = GetComponent<Rigidbody>();
-        Target = FindObjectOfType<PlayerController>().transform;
+        navMeshAgent = GetComponent<NavMeshAgent>();
+        navMeshAgent.speed = Random.Range( 2 , 5 ) * 5;
     }
 
     // Update is called once per frame
-    public void thisUpdate() {
-        Vector3 direction =  transform.position - Target.position;
-        direction.Normalize();
-
-        Roll( direction );
-    }
-
-
-    //Maby we should use movement? look if component system works?
-    private void Roll( Vector3 direction ) {
-        rigidBody.AddTorque( new Vector3( -direction.z , 0 , direction.x ) * speed * Time.deltaTime );
-        rigidBody.AddForce(-direction * 4);
+    public void thisUpdate( Vector3 targetPosition ) {
+        navMeshAgent.SetDestination( targetPosition );
     }
 }

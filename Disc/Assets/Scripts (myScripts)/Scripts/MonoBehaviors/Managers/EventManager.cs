@@ -58,3 +58,6 @@ public class EventManager : MonoBehaviour {
         }
     }
 }
+
+public class FloatEvent : UnityEvent<float> {
+}

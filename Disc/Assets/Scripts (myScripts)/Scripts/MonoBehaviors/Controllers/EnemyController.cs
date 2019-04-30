@@ -3,75 +3,73 @@ using System.Collections.Generic;
 using Hermit.DebugHelp;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour {
+//Define what Enemy shall be able to do!!! and make an ai for it? kond of at least. 
 
-    public IMediator Mediator {
-        get;
-        private set;
-    } = new Mediator();
 
-    protected MovmentComponent MovmentComponent {
-        get; private set;
-    }
-    protected JumpComponent JumpComponent {
-        get; private set;
-    }
-    protected RotationComponent RotationComponent {
-        get; private set;
-    }
-    internal HealthComponent HealthComponent {
-        get; private set;
-    }
-    protected DeathComponent DeathComponent {
-        get; private set;
-    }
-    internal CollectComponent CollectComponent {
-        get; private set;
-    }
+//public class EnemyController : MonoBehaviour {
 
-    private Transform target;
+//    protected MovmentComponent MovmentComponent {
+//        get; private set;
+//    }
+//    protected JumpComponent JumpComponent {
+//        get; private set;
+//    }
+//    protected RotationComponent RotationComponent {
+//        get; private set;
+//    }
+//    internal HealthComponent HealthComponent {
+//        get; private set;
+//    }
+//    protected DeathComponent DeathComponent {
+//        get; private set;
+//    }
+//    internal CollectComponent CollectComponent {
+//        get; private set;
+//    }
 
-    private float timeCount;
-    private int direction = 1;
-    private int random = 6;
-    private int health = 50;
-    private int drainFreqency = 4;
+//    private Transform target;
 
-    [SerializeField]
-    private float speed;
+//    private float timeCount;
+//    private int direction = 1;
+//    private int random = 6;
+//    private int health = 50;
+//    private int drainFreqency = 4;
 
-    [SerializeField]
-    private float jumpForce;
+//    [SerializeField]
+//    private float speed;
 
-    void Start() {
-        target = FindObjectOfType<PlayerController>().gameObject.transform;
-        MovmentComponent = new MovmentComponent( gameObject , speed , Mediator );
-        JumpComponent = new JumpComponent( gameObject , jumpForce , Mediator);
-        RotationComponent = new RotationComponent( gameObject, Mediator );
-        HealthComponent = new HealthComponent( health , drainFreqency , Mediator );
-        DeathComponent = new DeathComponent( Mediator );
-        CollectComponent = new CollectComponent( gameObject , FindObjectOfType<EnemyController>().gameObject , Mediator );
-    }
+//    [SerializeField]
+//    private float jumpForce;
 
-    void Update() {
+//    void Start() {
+//        //target = FindObjectOfType<PlayerController>().gameObject.transform;
+//        //MovmentComponent = new MovmentComponent( gameObject , speed );
+//        //JumpComponent = new JumpComponent( gameObject , jumpForce );
+//        //RotationComponent = new RotationComponent( gameObject);
+//        //HealthComponent = new HealthComponent( health , drainFreqency  );
+//        //DeathComponent = new DeathComponent( );
+//        ////CollectComponent = new CollectComponent( gameObject );
+//    }
 
-        if ( ( transform.position - target.position ).magnitude < 5 ) {
-            CollectComponent.Fire();
-        }
+//    void Update() {
 
-        if ( Time.frameCount % 10 == 0 ) {
-            CollectComponent.Collect();
-        }
+//        if ( ( transform.position - target.position ).magnitude < 5 ) {
+//            //CollectComponent.Fire();
+//        }
 
-        if ( timeCount > 4 ) {
-            direction = -direction;
-            timeCount = 0;
-            random = Random.Range(3, 9);
-        }
-        MovmentComponent.Move( direction );
-        RotationComponent.RotateTowards( target );
-        timeCount += Time.deltaTime;
+//        if ( Time.frameCount % 10 == 0 ) {
+//            //CollectComponent.Collect();
+//        }
 
-        HealthComponent.DrainHealth();
-    }
-}
+//        if ( timeCount > 4 ) {
+//            direction = -direction;
+//            timeCount = 0;
+//            random = Random.Range(3, 9);
+//        }
+//        MovmentComponent.Move( direction );
+//        RotationComponent.RotateTowards( target );
+//        timeCount += Time.deltaTime;
+
+//        HealthComponent.DrainHealth();
+//    }
+//}

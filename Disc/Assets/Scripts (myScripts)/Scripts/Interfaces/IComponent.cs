@@ -4,6 +4,8 @@ using Hermit.DebugHelp;
 using UnityEngine;
 
 public interface IComponent {
-    void Send( int index, int value );
-    void Recive( int index, int value );
+    void Send( string message , GameObject thing , float value );
+    void Recive( string message , GameObject thing , float value );
+    void OnEnable( );
+    void OnDisable( );
 }

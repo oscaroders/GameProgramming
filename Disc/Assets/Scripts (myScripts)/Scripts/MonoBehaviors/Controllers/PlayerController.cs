@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using Hermit.DebugHelp;
 using UnityEngine;
+using UnityEngine.AI;
 
+[RequireComponent( typeof( MovmentComponent ) , typeof( JumpComponent ) , typeof( RotationComponent ) )]
 public class PlayerController : MonoBehaviour {
 
-    public IMediator Mediator {
-        get;
-        private set;
+    internal Mediator Mediator {
+        get; private set;
     } = new Mediator();
 
     protected MovmentComponent MovmentComponent {
@@ -19,48 +20,36 @@ public class PlayerController : MonoBehaviour {
     protected RotationComponent RotationComponent {
         get; private set;
     }
-    internal HealthComponent HealthComponent {
+    protected CollectComponent CollectComponent {
         get; private set;
     }
-    protected DeathComponent DeathComponent {
+    protected FireComponent FireComponent {
         get; private set;
     }
-    internal CollectComponent CollectComponent {
+    protected HealthComponent HealthComponent {
         get; private set;
     }
-
 
     private InputHandler input;
 
-    [SerializeField]
-    private float speed;
-
-    [SerializeField]
-    private float jumpForce;
-
-    [SerializeField]
-    private int health;
-
-    private int drainFreqency = 5;
-
     private void Start() {
-        input = GameManager.instance.GameInput;
+        input = GameManager.INSTANCE.GameInput;
 
-        MovmentComponent = new MovmentComponent( gameObject , speed , Mediator );
-        JumpComponent = new JumpComponent( gameObject , jumpForce , Mediator );
-        RotationComponent = new RotationComponent( gameObject , Mediator );
-        HealthComponent = new HealthComponent( health , drainFreqency , Mediator );
-        DeathComponent = new DeathComponent( Mediator );
-        CollectComponent = new CollectComponent( gameObject, FindObjectOfType<EnemyController>().gameObject, Mediator );
+        MovmentComponent = GetComponent<MovmentComponent>();
+        JumpComponent = GetComponent<JumpComponent>();
+        RotationComponent = GetComponent<RotationComponent>();
+        CollectComponent = GetComponentInChildren<CollectComponent>();
+        FireComponent = GetComponentInChildren<FireComponent>();
+        HealthComponent = GetComponentInChildren<HealthComponent>();
 
         input.Horizontal = MovmentComponent.Move;
         input.Jump = JumpComponent.Jump;
         input.Position = RotationComponent.RotateTowards;
         input.Collect = CollectComponent.Collect;
-        input.Fire = CollectComponent.Fire;
     }
 
     private void Update() {
-        HealthComponent.DrainHealth();
+        MovmentComponent.thisUpdate();
+        HealthComponent.thisUpdate();
     }
 }

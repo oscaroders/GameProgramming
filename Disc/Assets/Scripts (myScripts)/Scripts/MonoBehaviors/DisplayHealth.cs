@@ -4,34 +4,31 @@ using Hermit.DebugHelp;
 using UnityEngine;
 using UnityEngine.UI;
 
+//Make a UI system instead....
+
 public class DisplayHealth : MonoBehaviour, IComponent {
 
-    IMediator mediator;
     public Text text;
     public Text text2;
 
-    public void Send( int index , int value ) {
-        mediator.MessageIndex( index , value , this );
+    public void OnDisable() {
+        //Do Stuff
     }
 
-    public void Recive( int index , int value ) {
-        switch ( index ) {
-            case 11:
-                //Do stuff.. akka set text
-                text2.text = "GameOver";
-                break;
-            case 10:
-                //Do stuff.. akka set text
-                text.text = "Health " + value.ToString();
-                break;
-            default:
-                break;
-        }
+    public void OnEnable() {
+        //Do Stuff
     }
+
+    public void Recive( string message , GameObject thing , float value ) {
+        //Do Stuff
+    }
+
+    public void Send( string message , GameObject thing , float value ) {
+        //Do Stuff
+    }
+
 
     // Start is called before the first frame update
     void Start() {
-        mediator = FindObjectOfType<PlayerController>().Mediator;
-        mediator.AddComponent( this );
     }
 }

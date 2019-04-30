@@ -13,12 +13,13 @@ public class GameManager : MonoBehaviour {
     /// <summary>
     /// Singleton pattern to ensure only one instance and to get a global point of access.
     /// </summary>
-    public static GameManager instance;
+    public static GameManager INSTANCE;
 
     private void Awake() {
 
-        if ( instance == null ) {
-            instance = this;
+        if ( INSTANCE == null ) {
+            INSTANCE = this;
+            DontDestroyOnLoad( this );
         } else {
             Destroy( this );
         }
@@ -70,9 +71,16 @@ public class GameManager : MonoBehaviour {
         private set;
     } = new InputHandler();
 
+    public PlayerController playerController {
+        get;
+        private set;
+    }
+
     private void Start() {
         GameInput.Quit = Quit;
         GameInput.Restart = Restart;
+
+        playerController = FindObjectOfType<PlayerController>();
     }
 
     private void Update() {
