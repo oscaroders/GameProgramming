@@ -46,6 +46,7 @@ public class PlayerController : MonoBehaviour {
         input.Jump = JumpComponent.Jump;
         input.Position = RotationComponent.RotateTowards;
         input.Collect = CollectComponent.Collect;
+        input.Fire = FireComponent.Fire;
     }
 
     private void Update() {

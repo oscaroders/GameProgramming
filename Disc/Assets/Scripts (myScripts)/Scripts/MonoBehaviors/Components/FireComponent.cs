@@ -22,8 +22,14 @@ public class FireComponent : MonoBehaviour, IComponent {
         UpdateNumberOfCollectedParasites();
         if ( numberOfCollectedParasites != 0 ) {
 
-            GameObject PB = Instantiate( parasiteBulletPrefab );
-            PB.GetComponent<ParasiteBulletController>().direction = -1;
+            GameObject PB = Instantiate( parasiteBulletPrefab, transform.position + (transform.forward * 1.2f) , transform.rotation );
+            PB.GetComponent<ParasiteBulletController>().direction = Input.mousePosition.x < Screen.width / 2 ? -1 : 1;
+
+            if (Input.mousePosition.y > Screen.height / 2) {
+
+                PB.GetComponent<Rigidbody>().AddForce( Vector3.up * Input.mousePosition.y * 0.5f);
+            }
+
             EventManager.TriggerEvent( "Disperse" );
         }
     }

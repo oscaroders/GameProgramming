@@ -12,13 +12,23 @@ public class ParasiteBulletController : MonoBehaviour {
 
     internal float direction;
 
+    private Collider collider;
+
+    private float timeCount;
+
     private void Start() {
         MovmentComponent = GetComponent<MovmentComponent>();
-        MovmentComponent.speed = 30;
+        collider = GetComponent<Collider>();
     }
 
     private void Update() {
         MovmentComponent.thisUpdate();
         MovmentComponent.Move( direction );
+
+        if ( timeCount > 5f ) {
+            //Do cool poff stuff..
+            Destroy(gameObject);
+        }
+        timeCount += Time.deltaTime;
     }
 }
