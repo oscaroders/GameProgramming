@@ -8,6 +8,8 @@ TagManager:
   - FxTemporaire
   - Npc
   - Item
+  - Enemy
+  - CollectZone
   layers:
   - Default
   - TransparentFX

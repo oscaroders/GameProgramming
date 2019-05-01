@@ -27,28 +27,30 @@ public class GameManager : MonoBehaviour {
     #endregion
 
     #region GameState
-    private enum GameState {
+    public enum GameState {
         MAINMENU,
         GAME,
         GAMEOVER,
     }
 
-    private GameState currentGameState;
+    public GameState currentGameState;
 
     /// <summary>
     /// Called to change GameState and handles actions when state changes
     /// </summary>
     /// <param name="gameState">GameSate</param>
-    private void ChangeGameState( GameState gameState ) {
+    public void ChangeGameState( GameState gameState ) {
         currentGameState = gameState;
 
         switch ( currentGameState ) {
             case GameState.MAINMENU:
                 //Do stuff... Run Main Menu
+                SceneManager.LoadScene( "MenuScene" );
                 break;
 
             case GameState.GAME:
                 //Do stuff... Run Game or level?
+                SceneManager.LoadScene( "GameScene" );
                 break;
 
             case GameState.GAMEOVER:
@@ -59,7 +61,34 @@ public class GameManager : MonoBehaviour {
                 break;
         }
     }
-    #endregion 
+    #endregion
+
+    #region Difficulty
+    public enum DifficultyLevel {
+        EASY,
+        MODERATE,
+        HARD,
+    }
+
+    public DifficultyLevel currentDifficultyLevel = DifficultyLevel.EASY;
+    public float difficultyMultipier;
+
+    public void ChangeDifficultyLevel(DifficultyLevel difficulty) {
+        currentDifficultyLevel = difficulty;
+
+        switch ( currentDifficultyLevel ) {
+            case DifficultyLevel.EASY:
+                difficultyMultipier = 1;
+                break;
+            case DifficultyLevel.MODERATE:
+                difficultyMultipier = 2;
+                break;
+            case DifficultyLevel.HARD:
+                difficultyMultipier = 5;
+                break;
+        }
+    }
+    #endregion
 
     public float WorldMagnitude {
         get;
@@ -92,7 +121,11 @@ public class GameManager : MonoBehaviour {
     }
 
     private void Quit() {
-        SceneManager.LoadScene( "MenuScene" );
+        if ( SceneManager.GetActiveScene() == SceneManager.GetSceneByName( "MenuScene" ) ) {
+            Application.Quit();
+        } else {
+            SceneManager.LoadScene( "MenuScene" );
+        }
     }
 
     private void Restart() {

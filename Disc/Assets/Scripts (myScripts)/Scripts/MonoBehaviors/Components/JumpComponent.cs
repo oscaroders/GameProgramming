@@ -15,7 +15,7 @@ public class JumpComponent : MonoBehaviour, IComponent {
     private float jumpCounter;
     private const float DIFFER = 2f;
 
-    private void Start( ) {
+    private void Start() {
         mediator = FindObjectOfType<PlayerController>().Mediator;
         rigidBody = GetComponent<Rigidbody>();
     }
@@ -34,7 +34,7 @@ public class JumpComponent : MonoBehaviour, IComponent {
         RaycastHit hit = new RaycastHit();
         float secondJumpHeight = 2, thirdJumpHeight = 4;
 
-        if ( Physics.Raycast( transform.position + Vector3.up * 0.2f, Vector3.up * -1, out hit ) ) {
+        if ( Physics.Raycast( transform.position + Vector3.up * 0.2f , Vector3.up * -1 , out hit ) ) {
             float distance = hit.distance;
 
             //first jump
@@ -57,7 +57,7 @@ public class JumpComponent : MonoBehaviour, IComponent {
 
             //third jump
             if ( distance > thirdJumpHeight - DIFFER && distance < thirdJumpHeight + DIFFER ) {
-                if ( Input.GetAxisRaw("Vertical") < -0.2 && JumpCounter( distance ) ) {
+                if ( Input.GetAxisRaw( "Vertical" ) < -0.2 && JumpCounter( distance ) ) {
 
                     GroundPunch();
                     return false;
@@ -67,13 +67,14 @@ public class JumpComponent : MonoBehaviour, IComponent {
                     return true;
                 }
             }
+
         }
         return false;
     }
 
     //GroundPunch should wipe out parasites in an area, kill enemy if land ontop and shake camera!
     private void GroundPunch() {
-        
+
     }
 
     private bool JumpCounter( float distance = 0 ) {
@@ -84,7 +85,7 @@ public class JumpComponent : MonoBehaviour, IComponent {
             return true;
         } else {
             if ( distance < 0.6f )
-            ResetJumpCounter();
+                ResetJumpCounter();
             return false;
         }
     }
@@ -102,7 +103,7 @@ public class JumpComponent : MonoBehaviour, IComponent {
     }
 
     public void Send( string message , GameObject thing , float value ) {
-        mediator.MessageIndex( message , thing , value, this );
+        mediator.MessageIndex( message , thing , value , this );
     }
 
     public void Recive( string message , GameObject thing , float value ) {

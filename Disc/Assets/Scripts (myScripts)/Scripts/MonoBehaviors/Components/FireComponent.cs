@@ -11,7 +11,9 @@ public class FireComponent : MonoBehaviour, IComponent {
     [SerializeField]
     private GameObject parasiteBulletPrefab;
 
-    private int numberOfCollectedParasites;
+    internal int numberOfCollectedParasites {
+        get; set;
+    }
 
     private void Start() {
         mediator = FindObjectOfType<PlayerController>().Mediator;
@@ -19,7 +21,9 @@ public class FireComponent : MonoBehaviour, IComponent {
     }
 
     public void Fire() {
-        UpdateNumberOfCollectedParasites();
+        if ( !gameObject.CompareTag( "Enemy" ) ) {
+            UpdateNumberOfCollectedParasites();
+        }
         if ( numberOfCollectedParasites != 0 ) {
 
             GameObject PB = Instantiate( parasiteBulletPrefab, transform.position + (transform.forward * 1.2f) , transform.rotation );

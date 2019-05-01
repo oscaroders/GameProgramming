@@ -3,73 +3,71 @@ using System.Collections.Generic;
 using Hermit.DebugHelp;
 using UnityEngine;
 
-//Define what Enemy shall be able to do!!! and make an ai for it? kond of at least. 
+[RequireComponent( typeof( MovmentComponent ) , typeof( JumpComponent ) , typeof( RotationComponent ) )]
+public class EnemyController : MonoBehaviour {
 
+    protected MovmentComponent MovmentComponent {
+        get; private set;
+    }
+    protected JumpComponent JumpComponent {
+        get; private set;
+    }
+    protected RotationComponent RotationComponent {
+        get; private set;
+    }
+    internal HealthComponent HealthComponent {
+        get; private set;
+    }
+    protected DeathComponent DeathComponent {
+        get; private set;
+    }
+    protected FireComponent FireComponent {
+        get; private set;
+    }
 
-//public class EnemyController : MonoBehaviour {
+    private Transform target;
 
-//    protected MovmentComponent MovmentComponent {
-//        get; private set;
-//    }
-//    protected JumpComponent JumpComponent {
-//        get; private set;
-//    }
-//    protected RotationComponent RotationComponent {
-//        get; private set;
-//    }
-//    internal HealthComponent HealthComponent {
-//        get; private set;
-//    }
-//    protected DeathComponent DeathComponent {
-//        get; private set;
-//    }
-//    internal CollectComponent CollectComponent {
-//        get; private set;
-//    }
+    private int drainFreqency = 4;
+    private float difficultyMultipyer = GameManager.INSTANCE.difficultyMultipier;
 
-//    private Transform target;
+    private bool isCoolingDown;
 
-//    private float timeCount;
-//    private int direction = 1;
-//    private int random = 6;
-//    private int health = 50;
-//    private int drainFreqency = 4;
+    void Start() {
+        target = FindObjectOfType<PlayerController>().gameObject.transform;
+        MovmentComponent = GetComponent<MovmentComponent>();
+        JumpComponent = GetComponent<JumpComponent>();
+        RotationComponent = GetComponent<RotationComponent>();
+        HealthComponent = GetComponentInChildren<HealthComponent>();
+        DeathComponent = GetComponentInChildren<DeathComponent>();
+        FireComponent = GetComponentInChildren<FireComponent>();
+    }
 
-//    [SerializeField]
-//    private float speed;
+    void Update() {
 
-//    [SerializeField]
-//    private float jumpForce;
+        RaycastHit hit;
+        Ray forward = new Ray( transform.position , transform.forward );
+        Ray backward = new Ray( transform.position , transform.forward * -1 );
+        if ( Physics.Raycast( forward , out hit) || Physics.Raycast( backward, out hit ) ) {
+            if ( hit.distance < 1.3f && Physics.Raycast(transform.position, -transform.up, 0.6f)) {
+                Debug.DrawRay( transform.position , -transform.up * 0.2f , Color.red , 2f );
+                JumpComponent.Jump();
+            }
+            if ( hit.transform.gameObject.CompareTag( "Player" ) && !isCoolingDown ) {
+                isCoolingDown = true;
+                FireComponent.numberOfCollectedParasites = 1;
+                FireComponent.Fire();
+                Invoke("ResetCoolDown", 2 / difficultyMultipyer);
+            }
+        }
 
-//    void Start() {
-//        //target = FindObjectOfType<PlayerController>().gameObject.transform;
-//        //MovmentComponent = new MovmentComponent( gameObject , speed );
-//        //JumpComponent = new JumpComponent( gameObject , jumpForce );
-//        //RotationComponent = new RotationComponent( gameObject);
-//        //HealthComponent = new HealthComponent( health , drainFreqency  );
-//        //DeathComponent = new DeathComponent( );
-//        ////CollectComponent = new CollectComponent( gameObject );
-//    }
+        MovmentComponent.Move(-1);
 
-//    void Update() {
+        RotationComponent.RotateTowards( target );
+        MovmentComponent.thisUpdate();
+        HealthComponent.thisUpdate();
+    }
 
-//        if ( ( transform.position - target.position ).magnitude < 5 ) {
-//            //CollectComponent.Fire();
-//        }
-
-//        if ( Time.frameCount % 10 == 0 ) {
-//            //CollectComponent.Collect();
-//        }
-
-//        if ( timeCount > 4 ) {
-//            direction = -direction;
-//            timeCount = 0;
-//            random = Random.Range(3, 9);
-//        }
-//        MovmentComponent.Move( direction );
-//        RotationComponent.RotateTowards( target );
-//        timeCount += Time.deltaTime;
-
-//        HealthComponent.DrainHealth();
-//    }
-//}
+    private void ResetCoolDown() {
+        isCoolingDown = false;
+    }
+}

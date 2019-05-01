@@ -10,9 +10,7 @@ public class HealthComponent : MonoBehaviour, IComponent {
     private IMediator mediator;
 
     [SerializeField]
-    private int health;
-
-    private float oldHealth = 100;
+    private float health;
 
     public int numberOfAttackingParasites {
         get; private set;
@@ -22,6 +20,11 @@ public class HealthComponent : MonoBehaviour, IComponent {
 
     private void Start() {
         mediator = FindObjectOfType<PlayerController>().Mediator;
+
+        if ( gameObject.CompareTag( "Enemy" ) ) {
+
+            health = health * GameManager.INSTANCE.difficultyMultipier;
+        }
     }
 
     public void thisUpdate() {
