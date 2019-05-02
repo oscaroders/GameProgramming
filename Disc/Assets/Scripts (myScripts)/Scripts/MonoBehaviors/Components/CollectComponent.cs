@@ -29,9 +29,11 @@ public class CollectComponent : MonoBehaviour, IComponent {
 
     public void Collect() {
 
-        numberOfCollectedParasites++;
+        if ( collectebleParasites.Count != 0 ) {
 
-        if ( collectebleParasites[0] != null ) {
+            ServiceLocator.GetAudio().PlaySound( "Collect1" , gameObject );
+
+            numberOfCollectedParasites++;
 
             particles.gameObject.SetActive( true );
             particles.Target = collectebleParasites[0].transform;
@@ -55,7 +57,7 @@ public class CollectComponent : MonoBehaviour, IComponent {
 
     private void OnTriggerEnter( Collider parasite ) {
 
-        if ( parasite.gameObject.layer == 11 ) {
+        if ( parasite.gameObject.CompareTag("Parasite") ) {
 
             collectebleParasites.Add( parasite.gameObject );
         }

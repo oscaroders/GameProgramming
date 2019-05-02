@@ -14,12 +14,14 @@ public class ParasiteManager : MonoBehaviour {
     private ParasiteController[] parasiteControllers;
     private PlayerController playerController;
 
-    private int sizeOfParasitePool = 5;
+    private float sizeOfParasitePool = 5;
 
     private void Start() {
 
+        sizeOfParasitePool = sizeOfParasitePool * GameManager.INSTANCE.difficultyMultipier;
+
         playerController = GameManager.INSTANCE.playerController;
-        parasiteControllers = new ParasiteController[sizeOfParasitePool];
+        parasiteControllers = new ParasiteController[(int)sizeOfParasitePool];
 
         for ( int i = 0 ; i < sizeOfParasitePool ; i++ ) {
 
@@ -39,6 +41,18 @@ public class ParasiteManager : MonoBehaviour {
             if( parasiteControllers[i].isActiveAndEnabled )
             parasiteControllers[i].thisUpdate( playerController.transform.position );
      
+        }
+
+        InvokeRepeating( "ReSpawnParasites", 6, 10 );
+
+    }
+
+    private void ReSpawnParasites() {
+        for ( int i = 0 ; i < sizeOfParasitePool ; i++ ) {
+            if ( !parasiteControllers[i].isActiveAndEnabled ) {
+                parasiteControllers[i].gameObject.transform.position = spawnPoints[Random.Range( 0 , spawnPoints.Length )].position;
+                parasiteControllers[i].gameObject.SetActive(true);
+            }
         }
     }
 

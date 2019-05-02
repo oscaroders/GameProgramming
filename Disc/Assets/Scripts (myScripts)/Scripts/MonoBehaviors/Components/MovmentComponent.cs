@@ -20,6 +20,10 @@ public class MovmentComponent : MonoBehaviour, IComponent, IMovable {
         mediator = FindObjectOfType<PlayerController>().Mediator;
         magnitude = GameManager.INSTANCE.WorldMagnitude;
         sqrMagnitude = Mathf.Pow( magnitude , 2 );
+
+        if ( gameObject.CompareTag( "Enemy" ) ) {
+            speed = speed * GameManager.INSTANCE.difficultyMultipier;
+        }
     }
 
     internal void thisUpdate() {

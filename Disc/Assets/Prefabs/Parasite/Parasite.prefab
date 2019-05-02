@@ -473,7 +473,7 @@ GameObject:
   - component: {fileID: 4216753966303624940}
   m_Layer: 11
   m_Name: Parasite
-  m_TagString: Untagged
+  m_TagString: Parasite
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -504,7 +504,7 @@ Animator:
   m_GameObject: {fileID: 8669437217725337742}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e607f74860c67814e93c914b710142d5, type: 3}
-  m_Controller: {fileID: 9100000, guid: b1d9482a51878f24aa7c0c09520f9ae4, type: 2}
+  m_Controller: {fileID: 0}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1

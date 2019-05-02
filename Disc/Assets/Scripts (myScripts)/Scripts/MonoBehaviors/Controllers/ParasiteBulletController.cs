@@ -25,10 +25,11 @@ public class ParasiteBulletController : MonoBehaviour {
         MovmentComponent.thisUpdate();
         MovmentComponent.Move( direction );
 
-        if ( timeCount > 5f ) {
-            //Do cool poff stuff..
+        if ( timeCount > 4f ) {
+
             Destroy(gameObject);
         }
         timeCount += Time.deltaTime;
     }
+
 }

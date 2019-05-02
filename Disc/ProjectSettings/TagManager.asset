@@ -10,6 +10,7 @@ TagManager:
   - Item
   - Enemy
   - CollectZone
+  - Parasite
   layers:
   - Default
   - TransparentFX

@@ -4,17 +4,38 @@ using Hermit.DebugHelp;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-//TODO Remake this shiiiit!!!!
-
 public class DeathComponent : MonoBehaviour, IComponent {
 
-    public DeathComponent( ) {
+    public GameObject GO;
+    public GameObject explosion;
+    public MeshRenderer rend;
 
+    public void Die() {
+
+        if ( gameObject.CompareTag( "Player" ) ) {
+
+            DebugLogging.CustomDebug( "You Died!" , size: 20 , color: "red" );
+            SceneManager.LoadScene( "MenuScene" );
+        } else {
+
+            DestroyObject();
+        }
     }
 
-    private void Die() {
-        DebugLogging.CustomDebug("someone Died!" , size: 20, color: "red");
-        SceneManager.LoadScene("MenuScene");
+    private void DestroyObject() {
+
+        ServiceLocator.GetAudio().PlaySound( "KillEnemy" , gameObject );
+        ServiceLocator.GetAudio().PlaySound( "Explosion" , gameObject );
+        GameObject tempExplosion = Instantiate(explosion, transform);
+        rend.enabled = false;
+
+        IEnumerator corutine = ResetExplosion( GO );
+        StartCoroutine(corutine);
+    }
+
+    private IEnumerator ResetExplosion(GameObject go) {
+        yield return new WaitForSeconds(2);
+        Destroy(go);
     }
 
     public void OnDisable() {

@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour {
     private InputHandler input;
 
     private void Start() {
+
         input = GameManager.INSTANCE.GameInput;
 
         MovmentComponent = GetComponent<MovmentComponent>();
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     private void Update() {
+
         MovmentComponent.thisUpdate();
         HealthComponent.thisUpdate();
     }

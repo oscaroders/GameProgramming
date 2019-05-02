@@ -71,7 +71,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public DifficultyLevel currentDifficultyLevel = DifficultyLevel.EASY;
-    public float difficultyMultipier;
+    public float difficultyMultipier {
+        get;
+        private set;
+    } = 1;
 
     public void ChangeDifficultyLevel(DifficultyLevel difficulty) {
         currentDifficultyLevel = difficulty;

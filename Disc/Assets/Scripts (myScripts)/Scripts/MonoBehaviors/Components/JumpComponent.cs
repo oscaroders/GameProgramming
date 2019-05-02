@@ -43,6 +43,12 @@ public class JumpComponent : MonoBehaviour, IComponent {
                 ResetJumpCounter();
                 if ( JumpCounter( distance ) ) {
 
+                    ServiceLocator.GetAudio().PlaySound( "Jump" , gameObject );
+
+
+                    if ( gameObject.CompareTag( "Player" ) )
+                        EventManager.TriggerEvent( "JumpAnimation" );
+
                     return true;
                 }
             }
@@ -50,6 +56,11 @@ public class JumpComponent : MonoBehaviour, IComponent {
             //second jump
             if ( distance > secondJumpHeight - DIFFER && distance < secondJumpHeight + DIFFER ) {
                 if ( JumpCounter( distance ) ) {
+
+                    ServiceLocator.GetAudio().PlaySound( "Jump" , gameObject );
+
+                    if ( gameObject.CompareTag( "Player" ) )
+                        EventManager.TriggerEvent( "JumpAnimation" );
 
                     return true;
                 }
@@ -64,6 +75,13 @@ public class JumpComponent : MonoBehaviour, IComponent {
 
                 } else if ( JumpCounter( distance ) ) {
 
+                    if ( gameObject.CompareTag( "Player" ) ) {
+
+                        ServiceLocator.GetAudio().PlaySound( "Jump" , gameObject );
+                        ServiceLocator.GetAudio().PlaySound( "ThirdJump" , gameObject );
+                        EventManager.TriggerEvent( "ThirdJumpAnimation" );
+                    }
+
                     return true;
                 }
             }
@@ -75,6 +93,8 @@ public class JumpComponent : MonoBehaviour, IComponent {
     //GroundPunch should wipe out parasites in an area, kill enemy if land ontop and shake camera!
     private void GroundPunch() {
 
+        if ( gameObject.CompareTag( "Player" ) )
+            EventManager.TriggerEvent( "GroundPunchAnimation" );
     }
 
     private bool JumpCounter( float distance = 0 ) {
