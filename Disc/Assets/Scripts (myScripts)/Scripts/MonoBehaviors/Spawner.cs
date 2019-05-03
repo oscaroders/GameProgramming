@@ -10,7 +10,7 @@ public class Spawner : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         for (int i = 0 ; i < 2 * GameManager.INSTANCE.difficultyMultipier ; i++ ) {
-            Instantiate(enemySpawnerPrefab, Vector3.zero, Quaternion.Euler(0, Random.Range(0, 359), 0));
+            Instantiate(enemySpawnerPrefab, Vector3.zero + Vector3.up * 0.5f, Quaternion.Euler(0, Random.Range(0, 359), 0));
         }
     }
 }

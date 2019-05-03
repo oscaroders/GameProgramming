@@ -29,6 +29,14 @@ public class AnimationStuff : MonoBehaviour, IComponent {
         modelAnimator.SetTrigger( "GroundPunch" );
     }
 
+    private void FireAnimation() {
+        modelAnimator.SetTrigger( "Atk_Forward" );
+    }
+
+    private void CollectAnimation() {
+        modelAnimator.SetTrigger( "Atk_Left" );
+    }
+
     public void ResetJump() {
         IdleAnimation();
     }
@@ -38,6 +46,8 @@ public class AnimationStuff : MonoBehaviour, IComponent {
         EventManager.StartListening( "JumpAnimation" , JumpAnimation );
         EventManager.StartListening( "ThirdJumpAnimation" , ThirdJumpAnimation );
         EventManager.StartListening( "GroundPunchAnimation" , GroundPunchAnimation );
+        EventManager.StartListening( "FireAnimation" , FireAnimation );
+        EventManager.StartListening( "CollectAnimation" , CollectAnimation );
     }
 
     public void OnDisable() {
@@ -45,6 +55,8 @@ public class AnimationStuff : MonoBehaviour, IComponent {
         EventManager.StopListening( "JumpAnimation" , JumpAnimation );
         EventManager.StopListening( "ThirdJumpAnimation" , ThirdJumpAnimation );
         EventManager.StopListening( "GroundPunchAnimation" , GroundPunchAnimation );
+        EventManager.StopListening( "FireAnimation" , FireAnimation );
+        EventManager.StopListening( "CollectAnimation" , CollectAnimation );
     }
 
     public void Recive( string message , GameObject thing , float value ) {

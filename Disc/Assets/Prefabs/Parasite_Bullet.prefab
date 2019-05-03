@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3142561410369217057}
   m_Layer: 11
   m_Name: SlimeControl1
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 3142561404695007807}
   m_Layer: 11
   m_Name: FrontArrowControl
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -72,7 +72,7 @@ GameObject:
   - component: {fileID: 3142561407113479651}
   m_Layer: 11
   m_Name: BackArrowControl
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 3142561407040059405}
   m_Layer: 11
   m_Name: MESH
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 3142561406536740755}
   m_Layer: 11
   m_Name: RightArrowControl
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,7 +165,7 @@ GameObject:
   - component: {fileID: 3142561408023564041}
   m_Layer: 11
   m_Name: SlimeLeftTailJoint
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -195,7 +195,7 @@ GameObject:
   - component: {fileID: 3142561410032532761}
   m_Layer: 11
   m_Name: SlimeHeadJoint
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -226,7 +226,7 @@ GameObject:
   - component: {fileID: 3059091794000592849}
   m_Layer: 11
   m_Name: SlimeLevel1 1
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -312,7 +312,7 @@ GameObject:
   - component: {fileID: 3142561410162589097}
   m_Layer: 11
   m_Name: SlimeRightJoint
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 3142561407450839705}
   m_Layer: 11
   m_Name: SlimeRootJoint
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -373,7 +373,7 @@ GameObject:
   - component: {fileID: 3142561410328588381}
   m_Layer: 11
   m_Name: SlimeFrontTailJoint
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -403,7 +403,7 @@ GameObject:
   - component: {fileID: 3142561409917219705}
   m_Layer: 11
   m_Name: SlimeBackTailJoint
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -433,7 +433,7 @@ GameObject:
   - component: {fileID: 3142561408564800365}
   m_Layer: 11
   m_Name: SlimeControl
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -469,7 +469,7 @@ GameObject:
   - component: {fileID: 3142561410151705991}
   m_Layer: 11
   m_Name: RIG
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -506,7 +506,7 @@ GameObject:
   - component: {fileID: 2612271375844648173}
   m_Layer: 11
   m_Name: Parasite_Bullet
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -597,8 +597,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0d30376bb36ccf42aa9fe1e0a8328c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GO: {fileID: 100006, guid: 2a474af3f4c27be4e9bdce39cfe4315d, type: 3}
-  rend: {fileID: 3059091794000592849}
 --- !u!54 &2612271375844648173
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -626,7 +624,7 @@ GameObject:
   - component: {fileID: 3142561408018202417}
   m_Layer: 11
   m_Name: LeftArrowControl
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -657,7 +655,7 @@ GameObject:
   - component: {fileID: 3142561409425009671}
   m_Layer: 11
   m_Name: SlimeNeckJoint
-  m_TagString: Untagged
+  m_TagString: Item
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,19 +13,22 @@ public class HealthComponent : MonoBehaviour, IComponent {
     [SerializeField]
     private float health;
 
+    private float maxHealth;
+
     public int numberOfAttackingParasites {
         get; private set;
     }
 
-    private Slider HealthBar;
+    public Slider HealthBar;
 
     private int drainFreqency = 5;
     private float timeCount;
+    private float difficulty;
 
     private void Start() {
-
+        maxHealth = health;
         mediator = FindObjectOfType<PlayerController>().Mediator;
-
+        difficulty = GameManager.INSTANCE.difficultyMultipier;
     }
 
     public void thisUpdate() {
@@ -38,7 +41,8 @@ public class HealthComponent : MonoBehaviour, IComponent {
 
             health -= numberOfAttackingParasites;
             EventManager.TriggerEvent( "RemoveHealth" );
-            
+            HealthBar.value = health / maxHealth;
+
             timeCount = 0;
 
             if ( health <= 0 ) {
@@ -55,8 +59,14 @@ public class HealthComponent : MonoBehaviour, IComponent {
         if ( parasite.gameObject.layer == 11 ) {
 
             ServiceLocator.GetAudio().PlaySound( "ParasiteAttack" , gameObject );
+            EventManager.TriggerEvent( "Shake" );
             numberOfAttackingParasites++;
             parasite.gameObject.SetActive( false );
+        } else if ( parasite.gameObject.layer == 10 ) {
+
+            ServiceLocator.GetAudio().PlaySound( "ParasiteAttack" , gameObject );
+            EventManager.TriggerEvent( "Shake" );
+            health -= 5 * difficulty;
         }
     }
 

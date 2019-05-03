@@ -14,13 +14,14 @@ public class ParasiteManager : MonoBehaviour {
     private ParasiteController[] parasiteControllers;
     private PlayerController playerController;
 
-    private float sizeOfParasitePool = 5;
+    private float sizeOfParasitePool = 8;
 
-    private void Start() {
+    private void Awake() {
 
         sizeOfParasitePool = sizeOfParasitePool * GameManager.INSTANCE.difficultyMultipier;
 
-        playerController = GameManager.INSTANCE.playerController;
+        playerController = FindObjectOfType<PlayerController>();
+        //playerController = GameManager.INSTANCE.playerController;
         parasiteControllers = new ParasiteController[(int)sizeOfParasitePool];
 
         for ( int i = 0 ; i < sizeOfParasitePool ; i++ ) {

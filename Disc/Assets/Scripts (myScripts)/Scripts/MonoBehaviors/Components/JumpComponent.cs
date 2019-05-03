@@ -93,8 +93,10 @@ public class JumpComponent : MonoBehaviour, IComponent {
     //GroundPunch should wipe out parasites in an area, kill enemy if land ontop and shake camera!
     private void GroundPunch() {
 
-        if ( gameObject.CompareTag( "Player" ) )
+        if ( gameObject.CompareTag( "Player" ) ) {
             EventManager.TriggerEvent( "GroundPunchAnimation" );
+            ServiceLocator.GetAudio().PlaySound( "ThirdJump" , gameObject );
+        }
     }
 
     private bool JumpCounter( float distance = 0 ) {

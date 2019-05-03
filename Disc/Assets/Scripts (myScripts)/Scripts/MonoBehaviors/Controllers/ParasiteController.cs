@@ -16,6 +16,7 @@ public class ParasiteController : MonoBehaviour {
 
     // Update is called once per frame
     public void thisUpdate( Vector3 targetPosition ) {
-        navMeshAgent.SetDestination( targetPosition );
+        
+            navMeshAgent.SetDestination( targetPosition );
     }
 }

@@ -10,7 +10,10 @@ public class HealthEnemyComponent : MonoBehaviour, IComponent {
     [SerializeField]
     private float maxHealth;
 
-    private float health;
+    public float health {
+        get;
+        set;
+    }
     private float AmountOfDamage;
 
     private Slider HealthBar;
@@ -30,7 +33,7 @@ public class HealthEnemyComponent : MonoBehaviour, IComponent {
         AmountOfDamage = health / 3 * GameManager.INSTANCE.difficultyMultipier;
     }
 
-    private void DrainHealth() {
+    public void DrainHealth() {
 
         health -= AmountOfDamage;
 
@@ -43,7 +46,7 @@ public class HealthEnemyComponent : MonoBehaviour, IComponent {
 
     private void OnTriggerEnter( Collider parasite ) {
 
-        if ( parasite.gameObject.layer == 11 ) {
+        if ( parasite.gameObject.layer == 11 && parasite.gameObject.CompareTag("Item")) {
 
             ServiceLocator.GetAudio().PlaySound( "Hit" , gameObject );
             parasite.gameObject.SetActive( false );

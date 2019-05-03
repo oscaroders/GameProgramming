@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5963e5a756f47f24da124fe2db68821a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerBox: {fileID: 0}
+  triggerBox: {fileID: 7073568574363635625}
   spawnPoint: {fileID: 7073568574505196179}
   enemyPrefab: {fileID: 5842200431633310953, guid: fbe0254218c38704f8b636ac32258aca,
     type: 3}
@@ -86,7 +86,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7073568574505196178}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30, y: 0, z: 0}
+  m_LocalPosition: {x: -30, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7073568574363635631}

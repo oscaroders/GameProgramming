@@ -57,18 +57,21 @@ public class EnemyController : MonoBehaviour {
 
         if ( Physics.Raycast( forward , out hit ) || Physics.Raycast( backward , out hit ) ) {
 
-            if ( hit.distance < 1.3f && Physics.Raycast( transform.position + Vector3.up * 0.2f , -transform.up , 0.25f ) ) {
+            if ( hit.transform.CompareTag( "Enemy" ) ) {
 
-                JumpComponent.Jump();
-            }
-
-            if ( hit.transform.gameObject.CompareTag( "Player" ) && !isCoolingDown ) {
+                direction *= -1;
+            } else if ( hit.transform.gameObject.CompareTag( "Player" ) && !isCoolingDown ) {
 
                 isCoolingDown = true;
                 FireComponent.numberOfCollectedParasites = 1;
                 FireComponent.Fire();
 
                 Invoke( "ResetCoolDown" , 2 / difficultyMultipyer );
+
+            } else if ( hit.distance < 1.1f && Physics.Raycast( transform.position + Vector3.up * 0.2f , -transform.up , 0.25f ) ) {
+
+
+                //JumpComponent.Jump();
             }
         }
 

@@ -35,6 +35,7 @@ public class PlayerController : MonoBehaviour {
     private void Start() {
 
         input = GameManager.INSTANCE.GameInput;
+        //DontDestroyOnLoad( gameObject );
 
         MovmentComponent = GetComponent<MovmentComponent>();
         JumpComponent = GetComponent<JumpComponent>();
@@ -54,5 +55,8 @@ public class PlayerController : MonoBehaviour {
 
         MovmentComponent.thisUpdate();
         HealthComponent.thisUpdate();
+
+       
+
     }
 }

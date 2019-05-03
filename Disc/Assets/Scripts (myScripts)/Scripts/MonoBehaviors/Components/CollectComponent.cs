@@ -32,6 +32,7 @@ public class CollectComponent : MonoBehaviour, IComponent {
         if ( collectebleParasites.Count != 0 ) {
 
             ServiceLocator.GetAudio().PlaySound( "Collect1" , gameObject );
+            EventManager.TriggerEvent( "CollectAnimation" );
 
             numberOfCollectedParasites++;
 

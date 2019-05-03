@@ -27,6 +27,7 @@ public class FireComponent : MonoBehaviour, IComponent {
         if ( numberOfCollectedParasites != 0 ) {
 
             ServiceLocator.GetAudio().PlaySound( "Shoot" , gameObject );
+            EventManager.TriggerEvent( "FireAnimation" );
 
             GameObject PB = Instantiate( parasiteBulletPrefab , transform.position + ( transform.forward * 1.2f ) , transform.rotation );
             PB.GetComponent<ParasiteBulletController>().direction = Input.mousePosition.x < Screen.width / 2 ? -1 : 1;
