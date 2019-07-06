@@ -13,8 +13,12 @@ public class CollectComponent : MonoBehaviour, IComponent {
         get; private set;
     }
 
+    public GameObject praticles;
+
     private IMediator mediator;
     private particleAttractorLinear particles;
+
+    private bool isCollecting;
 
     private List<GameObject> collectebleParasites;
 
@@ -23,11 +27,31 @@ public class CollectComponent : MonoBehaviour, IComponent {
 
         particles = FindObjectOfType<particleAttractorLinear>();
         particles.gameObject.SetActive( false );
+        praticles.SetActive( false );
 
         collectebleParasites = new List<GameObject>();
     }
 
     public void Collect() {
+
+        if ( !isCollecting ) {
+            float timeCount = 0;
+            praticles.SetActive( true );
+            isCollecting = true;
+
+            do {
+                StartCoroutine( "CollectParasites" );
+
+                timeCount += Time.deltaTime;
+
+            } while ( timeCount < 2 );
+
+            praticles.SetActive( false );
+            isCollecting = false;
+        }
+    }
+
+    private IEnumerator CollectParasites() {
 
         if ( collectebleParasites.Count != 0 ) {
 
@@ -39,11 +63,11 @@ public class CollectComponent : MonoBehaviour, IComponent {
             particles.gameObject.SetActive( true );
             particles.Target = collectebleParasites[0].transform;
 
-            EventManager.TriggerEvent( "ParticleBurst" );
-
             collectebleParasites[0].SetActive( false );
-            collectebleParasites.RemoveAt(0);
+            collectebleParasites.RemoveAt( 0 );
         }
+
+        yield return new WaitForSeconds( 2f );
     }
 
     public void DeactivateParticles() {

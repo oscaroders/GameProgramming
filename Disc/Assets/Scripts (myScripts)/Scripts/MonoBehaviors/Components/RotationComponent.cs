@@ -21,9 +21,11 @@ public class RotationComponent : MonoBehaviour, IComponent {
         if ( mousePosition.x < Screen.width / 2) {
 
             transform.rotation = Quaternion.Slerp( lookRight , lookLeft , 1 );
+            EventManager.TriggerEvent( "ShowEyesLeft" );
         } else {
 
             transform.rotation = Quaternion.Slerp( lookLeft , lookRight , 1 );
+            EventManager.TriggerEvent( "ShowEyesRight" );
         }
     }
 

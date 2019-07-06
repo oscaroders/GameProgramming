@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GroundPunch : MonoBehaviour, IComponent{
 
-    Rigidbody rigidbody;
+    private Rigidbody rigidbody;
 
     void Start() {
         rigidbody = GetComponentInParent<Rigidbody>();
